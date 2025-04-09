@@ -1,11 +1,18 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPopularMovie } from "../Redux/Slice/MovieSlice";
 import { RootState, AppDispatch } from "../Redux/store";
+import { fetchVideo } from "../Redux/Slice/VideoSlice";
+import Modal from "react-modal";
+import YouTube from "react-youtube";
 const PopularMovie: React.FC = () => {
+  //set Open trailer
+  const [isOpenTrailer, setIsOpenTrailer] = useState<boolean>(false);
+  //Gey key video
+  const [videoKey, setVideoKey] = useState<string>("");
   //Carousel
   const responsive = {
     superLargeDesktop: {
@@ -26,21 +33,54 @@ const PopularMovie: React.FC = () => {
       items: 1,
     },
   };
-
+  //Modal movie Style
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+  // Op youtube
+  const opts = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchPopularMovie());
   }, [dispatch]);
   const state = useSelector((state: RootState) => state.movie);
   const { results } = state;
-  console.log(results);
+  const handleVideo = (id: number) => {
+    dispatch(fetchVideo(id.toString()));
+    setVideoKey(trailerItemList[0].key);
+    setIsOpenTrailer(true);
+  };
+  const trailerItemList = useSelector((state: RootState) => {
+    return state.video.results;
+  });
+  const handleLeaveTrailer = (): void => {
+    setIsOpenTrailer(false);
+  };
   return (
     <div>
       <h2 className="text-red-600 text-2xl font-semibold">Popular Movies</h2>
       <Carousel responsive={responsive} className="mt-8 flex items-center">
         {results.map((film) => {
           return (
-            <div className="flex-none w-48">
+            <div
+              onClick={() => {
+                handleVideo(film.id);
+              }}
+              className="flex-none w-48 hover:scale-105 transition duration-500 ease-in-out cursor-pointer">
               <img
                 src={`${import.meta.env.VITE_MOVIE_BASE_URL}${
                   film.poster_path
@@ -53,6 +93,15 @@ const PopularMovie: React.FC = () => {
           );
         })}
       </Carousel>
+      <Modal
+        onRequestClose={() => {
+          handleLeaveTrailer();
+        }}
+        isOpen={isOpenTrailer}
+        style={customStyles}
+        contentLabel="Example Modal">
+        <YouTube videoId={videoKey} opts={opts} />
+      </Modal>
     </div>
   );
 };
