@@ -26,10 +26,6 @@ Users can browse a list of popular movies and watch trailers directly in the app
 
 ---
 
-## 📸 Screenshots
-
-> _(You can add screenshots or GIF here showing the movie list and modal trailer popup)_
-
 ---
 
 ## 📦 Installation & Run Locally
