@@ -35,6 +35,9 @@ const PopularMovie: React.FC = () => {
   };
   //Modal movie Style
   const customStyles = {
+    overlay: {
+      zIndex: 999,
+    },
     content: {
       top: "50%",
       left: "50%",
@@ -42,6 +45,7 @@ const PopularMovie: React.FC = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      zIndex: "100000",
     },
   };
   // Op youtube
