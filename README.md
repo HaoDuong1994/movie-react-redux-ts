@@ -1,54 +1,54 @@
-# React + TypeScript + Vite
+# 🎬 Movie Trailer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple responsive movie trailer web application built with **React + TypeScript** using data from [TMDB API](https://developer.themoviedb.org/docs/getting-started).  
+Users can browse a list of popular movies and watch trailers directly in the app.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- ✅ Fetch list of popular movies from TMDB API
+- ✅ Display movie posters and titles in a responsive grid
+- ✅ Click on any movie to view trailer in a modal
+- ✅ Smooth modal experience with `react-modal`
+- ✅ Built with Vite + React + TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠 Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- ⚛️ React 18
+- 💬 TypeScript
+- ⚡ Vite
+- 🎞 TMDB API
+- 🧩 React Modal
+- 🖼 CSS + Flexbox/Grid (Responsive support, in progress)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 📸 Screenshots
+
+> _(You can add screenshots or GIF here showing the movie list and modal trailer popup)_
+
+---
+
+## 📦 Installation & Run Locally
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/movie-trailer-app.git
+cd movie-trailer-app
+
+# Install dependencies
+npm install
+
+# Run the app
+npm run dev
+
+📝 Notes
+App is still in development. Some responsive layout issues may occur.
+
+Trailer is displayed using YouTube embeds provided by TMDB video API.
+
+No external UI libraries used — layout built with custom CSS and flex/grid.
 ```
